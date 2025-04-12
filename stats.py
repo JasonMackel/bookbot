@@ -26,5 +26,30 @@ def get_char_words(book_text):
 def sort_on(dict):
     return dict["num"]
 
-def sorting_chars(chardict):
-    return chardict.sort(reverse = True, key = sort_on)
+def sorting_chars(cdict):
+
+    char_list = [] 
+    for c in cdict: 
+        char_list.append(dict(char=c, num = cdict[c] ))
+
+    char_list.sort(reverse = True, key = sort_on)
+        
+    return char_list
+
+
+def print_report(path, word_count, sorted_chars):
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {path}...")
+    print("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+    print("--------- Character Count -------")
+
+
+    for cdict in sorted_chars:
+        char = cdict["char"]
+        count = cdict["num"]
+
+        if char.isalpha():
+            print(f"{char}: {count}")
+
+    print("============= END ===============")
